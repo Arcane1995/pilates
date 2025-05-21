@@ -18,6 +18,17 @@ body {
   color: var(--dark);
   line-height: 1.6;
 }
+.hero {
+  background-image: url('images/hero.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 400px; /* или нужная высота */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
 
 a {
   text-decoration: none;
