@@ -1,0 +1,569 @@
+/* Переменные CSS */
+:root {
+  --primary: #2c3e50; /* Темно-синий, почти черный для текста */
+  --secondary: #34495e; /* Чуть светлее, для подзаголовков/акцентов */
+  --accent: #e74c3c; /* Красный акцент для кнопок/выделения */
+  --light-gray: #ecf0f1; /* Очень светлый серый для фона секций */
+  --dark-gray: #bdc3c7; /* Темный серый для границ/линий */
+  --dark: #2c3e50; /* Для футера и некоторых элементов */
+}
+ 
+/* Общие стили */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+ 
+html {
+  scroll-behavior: smooth; /* Плавный скролл при переходах по якорям */
+}
+ 
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f4f4f4;
+  overflow-x: hidden; /* Предотвращает горизонтальный скролл */
+}
+ 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+ 
+h1, h2, h3, h4 {
+  color: var(--primary);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+ 
+h2 {
+  font-size: 2.5em;
+  text-align: center;
+  margin-bottom: 40px;
+}
+ 
+p {
+  margin-bottom: 15px;
+}
+ 
+a {
+  text-decoration: none;
+  color: var(--primary);
+}
+ 
+ul {
+  list-style: none;
+}
+ 
+/* Секция Hero (главный экран) */
+.hero {
+  position: relative;
+  height: 90vh;
+  background: url('../images/hero.jpg') no-repeat center center/cover; /* Путь к фоновому изображению */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  z-index: 1;
+}
+ 
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Затемнение изображения */
+  z-index: 1;
+}
+ 
+.hero-content {
+  position: relative;
+  z-index: 2; /* Контент над оверлеем */
+  max-width: 800px;
+  padding: 20px;
+}
+ 
+.hero-content h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Тень для читаемости */
+}
+ 
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.9);
+}
+ 
+/* Общие стили кнопок */
+.btn-primary {
+  display: inline-block;
+  background-color: var(--accent);
+  color: white;
+  padding: 12px 25px;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+ 
+.btn-primary:hover {
+  background-color: #c0392b; /* Более темный красный */
+  transform: translateY(-2px);
+}
+ 
+/* Секция "О нас" */
+#about {
+  padding: 60px 20px;
+  background-color: #fff;
+}
+ 
+#about p {
+  max-width: 800px;
+  margin: 0 auto 15px auto;
+  text-align: center;
+  line-height: 1.8;
+  color: #555;
+}
+ 
+/* Секция "Наши услуги" */
+.services {
+  padding: 60px 20px;
+  background-color: var(--light-gray);
+}
+ 
+.services .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+  align-items: stretch; /* Карточки выравниваются по высоте самой высокой в ряду */
+}
+ 
+/* Карточка услуги (основная) */
+.service-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 650px; /* Минимальная высота карточки для равномерности */
+  position: relative;
+  overflow: visible; /* ИЗМЕНЕНИЕ: было hidden, чтобы текст не обрезался */
+}
+ 
+/* Обертка для изображения в карточке услуги */
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 150%; /* Соотношение сторон 2:3 (высота = 1.5 * ширина) */
+  overflow: hidden; 
+  border-radius: 10px; 
+  margin-bottom: 20px; 
+  border: 1px solid #eee; 
+}
+ 
+.image-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Изображение заполнит обертку, сохраняя пропорции */
+}
+ 
+.service-card h3 {
+  margin-bottom: 15px;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+ 
+/* Контейнер для карточек-уровней */
+.level-options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+ 
+/* Карточка уровня (например "Начинающий") */
+.level-item {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+ 
+.level-item:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+ 
+.level-item.active { /* Стиль для активной карточки уровня */
+  background-color: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+ 
+.level-item.active h4 {
+  color: white;
+}
+ 
+.level-item.active img {
+  border-color: white;
+}
+ 
+.level-item img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 8px;
+  border: 2px solid var(--primary);
+  transition: border-color 0.2s ease;
+}
+ 
+.level-item h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 0;
+  transition: color 0.2s ease;
+}
+ 
+/* Описание уровня (контент аккордеона) */
+.level-description {
+  max-height: 0;            /* Самое главное: схлопывает высоту */
+  overflow: hidden;         /* Скрывает любое содержимое, которое вылазит за max-height */
+
+  /* Убедитесь, что все эти свойства равны НУЛЮ в скрытом состоянии */
+  padding-top: 0;           /* **ВАЖНОЕ ИЗМЕНЕНИЕ: явно установите вертикальные padding в 0** */
+  padding-bottom: 0;        /* **ВАЖНОЕ ИЗМЕНЕНИЕ: явно установите вертикальные padding в 0** */
+  padding-left: 20px;       /* Горизонтальные padding могут оставаться */
+  padding-right: 20px;      /* Горизонтальные padding могут оставаться */
+  margin-bottom: 0;         /* Уберите нижний отступ */
+
+  border: 1px solid transparent; /* Граница прозрачна */
+  box-shadow: none;         /* Тени нет */
+  background-color: transparent; /* Фон прозрачен */
+  color: transparent;       /* Текст прозрачен (для более плавного появления) */
+
+  /* Обновленные переходы для всех важных свойств */
+  transition: max-height 0.6s ease-out,
+              padding 0.6s ease,
+              margin-bottom 0.6s ease, /* Добавил плавный переход для margin-bottom */
+              border-color 0.6s ease,
+              box-shadow 0.6s ease,
+              background-color 0.6s ease,
+              color 0.6s ease;
+}
+
+/* Когда блок открыт, применяем полные значения */
+.level-description.open {
+  max-height: 600px; /* Достаточная высота для отображения */
+  padding-top: 15px;      /* **ВАЖНОЕ ИЗМЕНЕНИЕ: установите желаемый верхний padding** */
+  padding-bottom: 15px;   /* **ВАЖНОЕ ИЗМЕНЕНИЕ: установите желаемый нижний padding** */
+  padding-left: 20px;     /* Оставляем горизонтальные padding */
+  padding-right: 20px;    /* Оставляем горизонтальные padding */
+  margin-bottom: 15px;    /* Желаемый нижний отступ */
+
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  border-color: #f0f0f0;
+  background-color: #f9f9f9;
+  color: #555;
+}
+ 
+/* Кнопка "Записаться" */
+.book-btn {
+  margin-top: auto; /* Прижимает кнопку к низу карточки */
+  align-self: center; /* Центрирует кнопку по горизонтали */
+  margin-bottom: 0;
+}
+ 
+.note {
+  text-align: center;
+  margin-top: 30px;
+  font-style: italic;
+  color: #777;
+}
+ 
+/* Секция "Наши тренеры" */
+.instructors {
+  padding: 60px 20px;
+  background-color: #fff;
+}
+ 
+.instructors .grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+  align-items: stretch; /* Карточки выравниваются по высоте */
+}
+ 
+.instructor-card {
+  text-align: center;
+  background-color: #f8f8f8;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  min-height: 480px; /* Минимальная высота карточки тренера */
+}
+ 
+/* Обертка для изображения в карточке тренера */
+.instructor-card .image-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 150%; /* Соотношение сторон 2:3 */
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 15px; 
+  border: 1px solid #eee; 
+}
+ 
+.instructor-card .image-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+ 
+.instructor-card h3 {
+  margin-top: 0;
+  color: var(--primary);
+  font-size: 1.3em;
+}
+ 
+.instructor-card p {
+  font-size: 0.95em;
+  color: #666;
+}
+ 
+/* Секция "Контакты" */
+.contact {
+  background-color: #f4f4f4;
+  padding: 60px 20px;
+}
+ 
+.contact h2 {
+  text-align: center;
+  font-size: 2.4em;
+  margin-bottom: 40px;
+  color: var(--primary);
+}
+ 
+.contact-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+ 
+.contact-details {
+  flex: 1;
+  min-width: 280px;
+  font-size: 1.1em;
+  color: var(--dark);
+}
+ 
+.contact-details p {
+  margin: 12px 0;
+}
+ 
+.contact-details a {
+  color: var(--accent);
+}
+ 
+.contact-details a:hover {
+  text-decoration: underline;
+}
+ 
+.map-container {
+  flex: 1;
+  min-width: 300px;
+  height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+ 
+/* Секция "Футер" (подвал) */
+.footer {
+  background-color: var(--dark);
+  color: #fff;
+  padding: 40px 20px;
+}
+ 
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-bottom: 30px;
+}
+ 
+.footer h4 {
+  margin-bottom: 15px;
+  font-size: 1.3em;
+  color: #f8f8f8;
+}
+ 
+.footer p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.8);
+}
+ 
+.footer a {
+  color: #fff;
+  transition: color 0.3s ease;
+}
+.footer a:hover {
+  color: var(--accent);
+}
+ 
+.footer .copyright {
+  text-align: center;
+  font-size: 0.8rem;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.6);
+}
+ 
+/* Адаптивность (Responsive) */
+@media (max-width: 768px) {
+  .hero {
+    height: 70vh;
+  }
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+ 
+  h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+  }
+ 
+  #about, .services, .instructors, .contact, .footer {
+    padding: 40px 15px;
+  }
+ 
+  .services .grid, .instructors .grid-3 {
+    grid-template-columns: 1fr; /* Одна колонка на узких экранах */
+    gap: 25px;
+    margin-top: 30px;
+    align-items: stretch; 
+  }
+ 
+  .contact-wrapper {
+    flex-direction: column;
+    gap: 30px;
+  }
+ 
+  .map-container {
+    height: 300px;
+    min-width: 100%;
+  }
+ 
+  /* Для service-card на мобильных */
+  .service-card {
+    min-height: 530px; 
+  }
+ 
+  /* Для instructor-card на мобильных */
+  .instructor-card {
+    min-height: 420px; 
+  }
+ 
+  .level-options-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+  }
+ 
+  .level-item {
+    padding: 8px;
+  }
+  .level-item img {
+    width: 50px;
+    height: 50px;
+  }
+  .level-item h4 {
+    font-size: 0.8rem;
+  }
+  .level-description {
+    padding: 10px 15px;
+  }
+ 
+  .instructor-card h3 {
+    font-size: 1.2em;
+  }
+  .instructor-card p {
+    font-size: 0.9em;
+  }
+ 
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+ 
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+ 
+  .btn-primary {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+ 
+  /* Для service-card на очень маленьких мобильных */
+  .service-card {
+    min-height: 460px; 
+  }
+ 
+  .level-options-grid {
+    grid-template-columns: repeat(2, 1fr); /* Две колонки для опций уровня */
+  }
+ 
+  .level-item img {
+    width: 40px;
+    height: 40px;
+  }
+  .level-item h4 {
+    font-size: 0.75rem;
+  }
+}
